@@ -1,0 +1,11 @@
+.item {
+    color: black;
+}
+.item img {
+    height: 100px;
+    width: 100px;
+    border-radius: 80px;
+}
+.item span {
+    cursor: pointer;
+}

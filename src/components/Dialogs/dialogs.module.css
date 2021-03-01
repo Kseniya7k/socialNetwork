@@ -1,0 +1,35 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialog {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.dialogMe {
+    display: grid;
+    grid-template-columns: 10fr 2fr;
+}
+.dialogsItems {
+    padding: 30px;
+    line-height: 2;
+}
+.messages {
+    padding: 20px;
+    line-height: 6;
+}
+.avatarMe{
+    height: 100px;
+    width: 100px;
+    border-radius: 80px;
+    float: right;
+    padding: 10px;
+    margin-bottom: 600px;
+}
+.avatar{
+    height: 100px;
+    width: 100px;
+    border-radius: 80px;
+    float: left;
+    padding: 10px;
+}

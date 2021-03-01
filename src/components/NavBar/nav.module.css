@@ -1,0 +1,24 @@
+.nav {
+    background-color: #a07d7b;
+    grid-area: n;
+    padding: 25px;
+}
+.item a {
+    color: white;
+    text-decoration: none;
+    line-height: 2;
+}
+.item a.activeLink {
+    /*color: #ddb7b6;*/
+    color: #642f17;
+}
+.itemGrid {
+    display: grid;
+    padding-top: 20px;
+}
+.avatarsFriends img{
+    height: 40px;
+    width: 40px;
+    border-radius: 80px;
+    padding: 2px;
+}

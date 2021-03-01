@@ -1,0 +1,13 @@
+.barFriends {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+.avatar img{
+    height: 100px;
+    width: 100px;
+    border-radius: 80px;
+    padding: 20px;
+}
+.namesFriends {
+    padding: 60px;
+}

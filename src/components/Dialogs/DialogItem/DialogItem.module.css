@@ -1,0 +1,10 @@
+.dialog .active {
+    color: #c16353;
+}
+.dialog a {
+    color: white;
+    text-decoration: none;
+}
+.dialogItem {
+    color: #a07d7b;
+}
