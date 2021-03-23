@@ -6,18 +6,17 @@ import ava from "../../img/ava_Artem.jpg"
 import avaMe from "../../img/avaMe.jpg"
 
 const Dialogs = (props) => {
-
-    let dialogsElements = props.interlocutors
+    const { dialogsPage } = props;
+    let dialogsElements = dialogsPage.interlocutors
         .map( dialog => <DialogItem name={dialog.name} id={dialog.id} />);
 
-    let messagesElements = props.messages
-        .map( m => <Message message={m.message} /> )
+    let messagesElements = dialogsPage.messages
+        .map( m => <Message message={m.message} key={m.id}/> )
 
-    let TextNewMessage = React.createRef();
+    const onMessageChange = (e) => props.onMessageChangeHandler(e);
+    const sendMessage = () => props.sendMessageHandler();
 
-    let sendMessage = () => {
-        let TextMessage = TextNewMessage.current.value;
-    }
+    const isEmpty = !dialogsPage.newMessageText;
     return (
         <div>
             <div className={s.dialogs}>
@@ -28,8 +27,10 @@ const Dialogs = (props) => {
                             <img className={s.avatar} src={ava} alt="Фото собеседника"/>
                         </div>
                         <div>{messagesElements}</div>
+                        <div/>
                     </div>
                     <div className={s.dialogMe}>
+                        <div/>
                         <div>Мои ответы</div>
                         <div>
                             <img className={s.avatar} src={avaMe} alt="Фото пользователя"/>
@@ -38,9 +39,11 @@ const Dialogs = (props) => {
                 </div>
             </div>
             <div>
-                <textarea/>
+                <textarea className={s.textarea}
+                          value={dialogsPage.newMessageText}
+                          onChange={onMessageChange}/>
                 <div>
-                    <button onClick={ sendMessage }>Отправить</button>
+                    <button className={s.button} onClick={ sendMessage } disabled={isEmpty}>Отправить</button>
                 </div>
             </div>
         </div>

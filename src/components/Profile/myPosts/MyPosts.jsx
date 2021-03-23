@@ -3,28 +3,25 @@ import s from './myPosts.module.css';
 import Post from "./post/Post";
 
 const MyPosts = (props) => {
+    const {newPostText, messagesPosts} = props;
     const textNewsPosts = React.createRef();
-    const addPost = () => {
-        props.addPost();
-    }
-    const onPostChange = (event) => {
-        let text = event.target.value;
-        props.updateNewPostText(text);
-    }
-    const isEmpty = !props.newPostText;
+    const isEmpty = !newPostText;
+    const onChangeHandler = (e) => props.onPostChange(e);
+    const addPostHandler = () => props.addPost();
+
     return (
         <div className={s.postsBlock}>
             <h2>My post</h2>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={textNewsPosts} value={props.newPostText} />
+                    <textarea onChange={onChangeHandler} ref={textNewsPosts} value={newPostText} />
                 </div>
                 <div>
-                    <button onClick={addPost} disabled={isEmpty}>Add post</button>
+                    <button onClick={addPostHandler} disabled={isEmpty}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>
-                { props.massagesPosts.map(p => <Post key={p.id} massage={p.message} likesCount={p.likesCount}/>) }
+                { messagesPosts.map(p => <Post key={p.id} massage={p.message} likesCount={p.likesCount}/>) }
             </div>
         </div>
     )
