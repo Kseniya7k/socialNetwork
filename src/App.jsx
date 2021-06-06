@@ -9,10 +9,10 @@ import Settings from "./components/Settings/Settings";
 import {BrowserRouter, Route} from "react-router-dom";
 import Friends from "./components/Friends/Friends";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import FindUsersContainer from "./components/FindUsers/FindUsersContainer";
 
 
-const App = props => {
-    const { store } = props;
+const App = () => {
     return (
         <BrowserRouter>
             <div className="app-body-img">
@@ -30,6 +30,7 @@ const App = props => {
                             />
                             <Route exact path="/news" render={() => <News/>}/>
                             <Route exact path="/music" render={() => <Music/>}/>
+                            <Route exact path="/findUsers" render={() => <FindUsersContainer/>}/>
                             <Route exact path="/settings" render={() => <Settings/>}/>
                             <Route path="/friends" render={() => <Friends/>}/>
                         </div>

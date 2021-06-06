@@ -7,13 +7,16 @@ import avaMe from "../../img/avaMe.jpg"
 
 const Dialogs = (props) => {
     const { dialogsPage } = props;
+    console.log({dialogsPage});
     let dialogsElements = dialogsPage.interlocutors
-        .map( dialog => <DialogItem name={dialog.name} id={dialog.id} />);
+        .map( dialog => <DialogItem name={dialog.name} id={dialog.id} key={dialog.id} />);
 
     let messagesElements = dialogsPage.messages
         .map( m => <Message message={m.message} key={m.id}/> )
 
-    const onMessageChange = (e) => props.onMessageChangeHandler(e);
+    const onMessageChange = (event) => {
+        props.onMessageChangeHandler(event.target.value)
+    };
     const sendMessage = () => props.sendMessageHandler();
 
     const isEmpty = !dialogsPage.newMessageText;

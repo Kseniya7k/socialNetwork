@@ -16,20 +16,23 @@ const initialState = {
     ],
     newMessageText: ''
 }
-export const dialogsReducer = (state = initialState, action) =>{
+export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageText = action.newMessage;
-            return state;
+            return { ...state, newMessageText: action.newMessage };
         case SEND_NEW_MESSAGE:
-            let newMessage = state.newMessageText;
-            state.newMessageText = '';
-            state.messages.push({id: 5, message: newMessage});
-            return state;
+            return {
+                ...state,
+                messages: [ ...state.messages].concat([{id: 5, message: state.newMessageText }]),
+                newMessageText: ''
+            }
         default:
             return state;
     }
 }
 
-export const onMessageChange = (newMessage) => ({ type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage });
+export const onMessageChange = (newMessage) => {
+    console.log(newMessage)
+    return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage};
+};
 export const sendMessage = () => ({type: SEND_NEW_MESSAGE});
