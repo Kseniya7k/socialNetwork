@@ -36,3 +36,5 @@ export const onMessageChange = (newMessage) => {
     return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage};
 };
 export const sendMessage = () => ({type: SEND_NEW_MESSAGE});
+
+export default dialogsReducer;

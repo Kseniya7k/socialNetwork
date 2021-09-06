@@ -2,27 +2,12 @@ import React from 'react';
 import {connect} from "react-redux";
 import {onMessageChange, sendMessage} from "../../redux/dialogsReduser";
 import Dialogs from "./Dialogs";
-
-// const DialogsContainer = () => {
-//     return (
-//         <StoreContext.Consumer>
-//             {
-//             (store) => {
-//                 const dispatch = store.dispatch.bind(store);
-//                 return <Dialogs
-//                     onMessageChangeHandler={event => dispatch(onMessageChange(event.target.value))}
-//                     sendMessageHandler={() => dispatch(sendMessage())}
-//                     dialogsPage={store.getState().dialogsPage}
-//                 />
-//             }
-//         }
-//         </StoreContext.Consumer>
-//     );
-// }
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 const mapStateToProps = (state) => {
     return {
-        dialogsPage: state.dialogsPage
+        dialogsPage: state.dialogsPage,
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -35,4 +20,7 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect
+)(Dialogs)
