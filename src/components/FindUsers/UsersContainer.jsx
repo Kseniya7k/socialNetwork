@@ -1,66 +1,61 @@
 import React from "react";
 import {connect} from "react-redux";
-import {
-    acceptFollow, getUsersThunkCreator, setCurrentPage,
-    toggleIsFetching, toggleIsFollowInProgress, acceptUnfollow,
-    unfollowThunkCreator, followThunkCreator } from "../../redux/findUsersReduser";
+import { requestUsers, toggleIsFetching, toggleIsFollowInProgress,
+    unfollowUser, followUser } from "../../redux/findUsersReducer";
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import { getCurrentPage, getFollowingInProgress, getIsFetching,
+    getPageSize, getTotalUsersCount, getUsers } from "../../redux/usersSelectors";
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {page, pageSize, requestUsers} = this.props;
+        requestUsers(page, pageSize);
     };
 
     onPageChanged = (pageNumber) => {
-        this.props.getUsers(pageNumber, this.props.pageSize)
+        const {requestUsers, pageSize} = this.props;
+        requestUsers(pageNumber, pageSize);
     }
 
     render() {
-        const {totalUsersCount, pageSize, currentPage, users,
-            acceptFollow, acceptUnfollow, followingInProgress,
-            unfollowThunkCreator, followThunkCreator} = this.props;
+        const {totalUsersCount, pageSize, page,
+            users, followingInProgress, unfollow, follow} = this.props;
 
         return (
             <div>
                 {this.props.isFetching ? <Preloader/> : null}
                 <Users totalUsersCount={totalUsersCount}
                        pageSize={pageSize}
-                       currentPage={currentPage}
+                       page={page}
                        onPageChanged={this.onPageChanged}
                        users={users}
-                       acceptFollow={acceptFollow}
-                       acceptUnfollow={acceptUnfollow}
                        followingInProgress={followingInProgress}
-                       unfollowThunkCreator={unfollowThunkCreator}
-                       followThunkCreator={followThunkCreator}/>
+                       unfollow={unfollow}
+                       follow={follow}/>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        users: state.usersPage.users,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-    }
-}
+const mapStateToProps = (state) => ({
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    page: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
+
+})
 
 export default compose(
     WithAuthRedirect,
     connect(mapStateToProps, {
-        acceptFollow,
-        acceptUnfollow,
-        setCurrentPage,
         toggleIsFetching,
         toggleIsFollowInProgress,
-        getUsers: getUsersThunkCreator,
-        unfollowThunkCreator,
-        followThunkCreator})
+        requestUsers,
+        unfollow: unfollowUser,
+        follow: followUser})
 )(UsersContainer)

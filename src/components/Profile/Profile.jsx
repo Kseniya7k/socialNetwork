@@ -1,16 +1,23 @@
-import React from 'react';
+import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./myPosts/MyPostsContainer";
-import {Redirect} from "react-router-dom";
 
 const Profile = (props) => {
+    const { profile, status, updateStatus, userId, isFollowingDisabled, unfollow, follow, followed, users} = props;
 
-    return (
-        <div>
-            <ProfileInfo profile={props.profile}/>
-            <MyPostsContainer/>
-        </div>
-    )
+    if (!profile) {
+        return <MyPostsContainer/>
+    } else {
+        return <ProfileInfo profile={profile}
+                            status={status}
+                            updateStatus={updateStatus}
+                            userId={userId}
+                            isFollowingDisabled={isFollowingDisabled}
+                            unfollow={unfollow}
+                            follow={follow}
+                            followed={followed}
+                            users={users} />
+    }
 }
 
 export default Profile;

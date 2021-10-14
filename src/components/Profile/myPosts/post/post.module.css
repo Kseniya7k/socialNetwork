@@ -1,11 +1,25 @@
 .item {
     color: black;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    border: 3px dashed #c16353;
+    border-radius: 10px;
+    margin: 5px;
 }
 .item img {
     height: 100px;
     width: 100px;
     border-radius: 80px;
+    margin: 10px;
 }
 .item span {
     cursor: pointer;
+}
+.postBlock {
+    padding-top: 45px;
+    text-align: left;
+    font-size: 20px;
+}
+.like {
+    margin-left: 38px;
 }

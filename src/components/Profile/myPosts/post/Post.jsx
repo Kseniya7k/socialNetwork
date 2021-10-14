@@ -1,12 +1,12 @@
 import React from 'react';
-import classes from './post.module.css';
+import s from './post.module.css';
 import ava from "../../../../img/ava.jpg";
 
 class Post extends React.Component {
     constructor(props) {
         super(props);
+        let startLikes = props.likesCount;
 
-        let startLikes = props.likesCount
         this.state = {
             likes: startLikes
         };
@@ -14,18 +14,20 @@ class Post extends React.Component {
 
     addLike = () => {
         this.setState({
-            likes: ++this.state.likes
+            likes: this.state.likes + 1
         });
     }
 
     render() {
         return (
-            <div className={classes.item}>
-                <img src={ava} alt="Ava"/>
-                {this.props.massage}
+            <div className={s.item}>
                 <div>
-                    <span onClick={this.addLike}>like {this.state.likes}</span>
+                    <img src={ava} alt="Ava"/>
+                    <div className={s.like}>
+                        <span onClick={this.addLike}>like {this.state.likes}</span>
+                    </div>
                 </div>
+                <div className={s.postBlock}>{this.props.massage}</div>
             </div>
         );
     }

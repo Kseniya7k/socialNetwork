@@ -1,5 +1,5 @@
 import {profileReducer} from "./profileReducer";
-import {dialogsReducer} from "./dialogsReduser";
+import {dialogsReducer} from "./dialogsReducer";
 
 let store = {
     _state: {
@@ -12,7 +12,6 @@ let store = {
                     id: 2,
                     likesCount: 10}
             ],
-            newPostText: ''
         },
         dialogsPage: {
             interlocutors: [
@@ -28,7 +27,6 @@ let store = {
                 {id:4, message: 'Привет,посмотри какую щарлотку я приготовила!'}
             ],
             newMessageText: ''
-
         }
     },
     observers: [],
@@ -36,9 +34,11 @@ let store = {
     getState() {
       return this._state
     },
+
     call() {
         this.observers.forEach(obs => obs());
     },
+
     subscribe(observer) {
         this.observers.push(observer);
     },
@@ -48,6 +48,6 @@ let store = {
         this.getState().dialogsPage = dialogsReducer(this.getState().dialogsPage, action);
         this.call();
     }
-
 }
+
 export default store;

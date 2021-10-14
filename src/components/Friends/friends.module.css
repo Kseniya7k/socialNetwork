@@ -1,6 +1,14 @@
+.bodyFriends {
+    width: 100vh;
+    padding-left: 180px;
+}
+.pages {
+    text-align:center;
+    font-size: 25px;
+}
 .barFriends {
     display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-template-columns: 3fr 5fr;
 }
 .avatar img{
     height: 100px;
@@ -10,4 +18,29 @@
 }
 .namesFriends {
     padding: 60px;
+}
+.selectedPage {
+    font-weight: bold;
+    font-size: 30px;
+
+}
+.infaBoxFriends {
+    padding-top: 40px;
+}
+.infaBoxFriends h4 {
+    font-size: 20px;
+    padding: 10px;
+}
+.infaBoxFriends p {
+    font-size: 15px;
+    padding: 10px;
+    color: black;
+    text-decoration: none;
+}
+.infaBoxFriends NawLink {
+    text-decoration: none;
+}
+.statusBar {
+    font-size: 15px;
+    padding: 10px;
 }

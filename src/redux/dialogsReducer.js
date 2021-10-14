@@ -1,5 +1,4 @@
 export const SEND_NEW_MESSAGE = 'SEND-NEW-MESSAGE';
-export const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 const initialState = {
     interlocutors: [
@@ -13,28 +12,20 @@ const initialState = {
         {id:2,message: 'Привет,а как дела?)'},
         {id:3,message: 'Привет)'},
         {id:4,message: 'Привет,посмотри какую щарлотку я приготовила!'}
-    ],
-    newMessageText: ''
+    ]
 }
 export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return { ...state, newMessageText: action.newMessage };
         case SEND_NEW_MESSAGE:
             return {
                 ...state,
-                messages: [ ...state.messages].concat([{id: 5, message: state.newMessageText }]),
-                newMessageText: ''
+                messages: [ ...state.messages].concat([{id: 5, message: action.massageText }]),
             }
         default:
             return state;
     }
 }
 
-export const onMessageChange = (newMessage) => {
-    console.log(newMessage)
-    return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage};
-};
-export const sendMessage = () => ({type: SEND_NEW_MESSAGE});
+export const sendMessage = (massageText) => ({type: SEND_NEW_MESSAGE, massageText});
 
 export default dialogsReducer;

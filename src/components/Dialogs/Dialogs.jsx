@@ -4,6 +4,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Massage/Message";
 import ava from "../../img/ava_Artem.jpg"
 import avaMe from "../../img/avaMe.jpg"
+import MassageForm from "./MassageForm";
 
 const Dialogs = (props) => {
     const { dialogsPage } = props;
@@ -13,16 +14,13 @@ const Dialogs = (props) => {
     let messagesElements = dialogsPage.messages
         .map( m => <Message message={m.message} key={m.id}/> );
 
-    const onMessageChange = (event) => {
-        props.onMessageChangeHandler(event.target.value)
-    };
+    // const isEmpty = !dialogsPage.newMessageText;
 
-    const sendMessage = () => props.sendMessageHandler();
-    const isEmpty = !dialogsPage.newMessageText;
-
-    // if (!props.isAuth) return <Redirect to={'/login'}/>
+    const sendNewMassage = (values) => {
+        props.sendMessageHandler(values.massageText)
+    }
     return (
-        <div>
+        <div className={s.bodyDialogs}>
             <div className={s.dialogs}>
                 <div className={s.dialogsItems}>{dialogsElements}</div>
                 <div className={s.messages}>
@@ -42,14 +40,7 @@ const Dialogs = (props) => {
                     </div>
                 </div>
             </div>
-            <div>
-                <textarea className={s.textarea}
-                          value={dialogsPage.newMessageText}
-                          onChange={onMessageChange}/>
-                <div>
-                    <button className={s.button} onClick={ sendMessage } disabled={isEmpty}>Отправить</button>
-                </div>
-            </div>
+            <MassageForm onSubmit={sendNewMassage}/>
         </div>
     );
 }

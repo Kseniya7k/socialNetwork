@@ -1,6 +1,11 @@
 .app-body-img {
     background: url("img/fon_body.jpg") no-repeat center top;
-    background-size: 100%;
+    /*background-size: 100%;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 140vh;
 }
 .app-img {
     width: 100%;

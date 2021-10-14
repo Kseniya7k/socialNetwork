@@ -11,7 +11,7 @@ const Nav = () => {
             <NavLink to="/profile" activeClassName={s.activeLink}>Profile</NavLink>
         </div>
         <div className={s.item}>
-            <NavLink to="/dialogs" activeClassName={s.activeLink}>Massages</NavLink>
+            <NavLink to="/dialogs" activeClassName={s.activeLink}>Messages</NavLink>
         </div>
         <div className={s.item}>
             <NavLink to="/news" activeClassName={s.activeLink}>News</NavLink>
@@ -33,9 +33,9 @@ const Nav = () => {
                     <NavLink to="/friends" activeClassName={s.activeLink}>Friends</NavLink>
                 </div>
                 <div className={s.avatarsFriends}>
-                    <img src={avatar1}/>
-                    <img src={avatar2}/>
-                    <img src={avatar3}/>
+                    <img src={avatar1} alt={'Друзья'}/>
+                    <img src={avatar2} alt={'Друзья'}/>
+                    <img src={avatar3} alt={'Друзья'}/>
                 </div>
             </div>
         </div>
